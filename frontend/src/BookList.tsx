@@ -4,9 +4,8 @@ function BookList() {
     const [books, setBooks] = useState<book[]>([]);
     const [pageSize, setPageSize] = useState<number>(5);
     const [pageNumber, setPageNumber] = useState<number>(1);
-    const [totalItems, setTotalItems] = useState<number>(0);
     const [totalPages, setTotalPages] = useState<number>(0);
-    const validTotalPages = isNaN(totalPages) || totalPages < 1 ? 1 : totalPages;
+    const [sortOrder, setSortOrder] = useState<string>("none");
     useEffect(() => {
         const fetchBook = async() => {
             // const response = await fetch(`https://localhost:5000/api/water/allbooks?pageSize=${pageSize}&pageNumber=${pageNumber}`, {
@@ -14,27 +13,40 @@ function BookList() {
             // });
             const response = await fetch(`https://localhost:5000/api/BookStore/AllBooks?pageSize=${pageSize}&pageNumber=${pageNumber}`);
             const data = await response.json();
-            setBooks(data.bookList); //this has to be a lowercase p to match what gets returned
-            setTotalItems(data.totalNumberbooks);
-            setTotalPages(Math.ceil(totalItems / pageSize));
+
+            let sortedBooks = data.bookList; //this has to be a lowercase p to match what gets returned
+
+            // Sort books if sortOrder is set to A to Z or Z to A
+            if (sortOrder === "A to Z") {
+                sortedBooks = sortedBooks.sort((a: book, b: book) =>
+                    a.title.localeCompare(b.title)
+                );
+            } else if (sortOrder === "Z to A") {
+                sortedBooks = sortedBooks.sort((a: book, b: book) =>
+                    b.title.localeCompare(a.title)
+                );
+            }
+
+            setBooks(sortedBooks); // Set the sorted book list
+            setTotalPages(Math.ceil(data.totalNumberBooks / pageSize));
         };
 
-
-
-
         fetchBook();
-    }, [pageSize, pageNumber, totalItems]); //try, if don't work pass in empty array.
-
-
-
-
-
+    }, [pageSize, pageNumber, sortOrder]); //try, if don't work pass in default values
 
 
 
     return (
         <>
             <h1>Books Available</h1>
+            <label>
+                Sort by:
+                <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+                    <option value="none">None</option>
+                    <option value="A to Z">A to Z</option>
+                    <option value="Z to A">Z to A</option>
+                </select>
+            </label>
             {
                 books?.map((i) => (
                     <div id="bookCard" className="card" key={i.bookID}>
@@ -61,18 +73,13 @@ function BookList() {
 
 
             {/* dynamically create number of pages needed */}
-            {[...Array(validTotalPages)].map((_, i) => (
-                <button key={i + 1} onClick={() => setPageNumber(i + 1)} disabled={pageNumber === (i + 1)}>
-                    {i + 1}
-                </button>
-            ))} 
-            {/* {
+            {
                 [...Array(totalPages)].map((_, i) => (
                     <button key={i + 1} onClick={() => setPageNumber(i + 1)} disabled={pageNumber === (i + 1)}>
                         {i + 1}
                     </button>
                 ))
-            } */}
+            }
 
 
             <button disabled={pageNumber === totalPages} onClick={() => setPageNumber(pageNumber + 1)}>Next</button>
@@ -93,13 +100,4 @@ function BookList() {
     );
 }
 
-
 export default BookList;
-
-
-// function BookList() {
-
-// }
-
-
-// export default BookList

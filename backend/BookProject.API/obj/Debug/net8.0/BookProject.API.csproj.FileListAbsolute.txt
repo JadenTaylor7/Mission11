@@ -135,3 +135,4 @@ C:\Users\jtjad\School\IS 413 Eneterprise Level Development\Mission11\backend\Boo
 C:\Users\jtjad\School\IS 413 Eneterprise Level Development\Mission11\backend\BookProject.API\obj\Debug\net8.0\BookProject.API.pdb
 C:\Users\jtjad\School\IS 413 Eneterprise Level Development\Mission11\backend\BookProject.API\obj\Debug\net8.0\BookProject.API.genruntimeconfig.cache
 C:\Users\jtjad\School\IS 413 Eneterprise Level Development\Mission11\backend\BookProject.API\obj\Debug\net8.0\ref\BookProject.API.dll
+C:\Users\jtjad\School\IS 413 Eneterprise Level Development\Mission11\backend\BookProject.API\obj\Debug\net8.0\BookProject.API.sourcelink.json
