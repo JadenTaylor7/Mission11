@@ -1,7 +1,7 @@
 import './App.css';
 import { CartProvider } from './context/CartContext';
 import CartPage from './pages/CartPage';
-import DonatePage from './pages/PurchasePage';
+import DonatePage from './pages/DonatePage';
 import ProjectsPage from './pages/BooksPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 

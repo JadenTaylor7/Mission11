@@ -45,6 +45,18 @@
         }
       }
     },
+    "/api/BookStore/GetBookTypes": {
+      "get": {
+        "tags": [
+          "BookStore"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/BookStore/GetFeisty": {
       "get": {
         "tags": [

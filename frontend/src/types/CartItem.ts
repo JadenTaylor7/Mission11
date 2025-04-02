@@ -1,5 +1,5 @@
 export interface CartItem {
-    projectId: number;
-    projectName: string;
+    bookId: number;
+    title: string;
     donationAmount: number;
   }

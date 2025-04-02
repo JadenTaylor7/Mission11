@@ -45,22 +45,16 @@ namespace BookProject.API.Controllers
             });
         }
 
-        // [HttpGet("AllBooks")]
-        // public IActionResult GetBooks(int pageSize, int pageNumber)
-        // {
+        [HttpGet("GetBookTypes")]
+        public IActionResult GetBookTypes ()
+        {
+            var bookTypes = _storeContext.Books
+                .Select(b => b.Category)
+                .Distinct()
+                .ToList();
 
-        //     var bookList = _storeContext.Books
-        //         .Skip((pageNumber - 1) * pageSize)
-        //         .Take(pageSize).ToList();
-
-        //     var totalNumberBooks = _storeContext.Books.Count();
-
-        //     return Ok(new
-        //     {
-        //         bookList,
-        //         totalNumberBooks
-        //     });
-        // }
+            return Ok(bookTypes);
+        }
 
 
 

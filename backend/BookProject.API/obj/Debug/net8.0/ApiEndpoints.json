@@ -27,6 +27,16 @@
   },
   {
     "ContainingType": "BookProject.API.Controllers.BookStoreController",
+    "Method": "GetBookTypes",
+    "RelativePath": "api/BookStore/GetBookTypes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookProject.API.Controllers.BookStoreController",
     "Method": "GetFiesty",
     "RelativePath": "api/BookStore/GetFeisty",
     "HttpMethod": "GET",

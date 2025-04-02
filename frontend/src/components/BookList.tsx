@@ -1,18 +1,29 @@
 import { useEffect, useState } from "react";
-import {book} from "./types/book"
-function BookList() {
+import {book} from "../types/book";
+import { useNavigate } from "react-router-dom";
+function BookList({ selectedCategories }: { selectedCategories: string[]}) {
     const [books, setBooks] = useState<book[]>([]);
-    const [pageSize, setPageSize] = useState<number>(5);
+    const [pageSize, setPageSize] = useState<number>(10);
     const [pageNumber, setPageNumber] = useState<number>(1);
+    const [totalItems, setTotalItems] = useState<number>(0);
     const [totalPages, setTotalPages] = useState<number>(0);
-    const [sortOrder, setSortOrder] = useState<string>("none");
+    const [sortOrder, setSortOrder] = useState<string>("none"); 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchBook = async() => {
             // const response = await fetch(`https://localhost:5000/api/water/allbooks?pageSize=${pageSize}&pageNumber=${pageNumber}`, {
             //     credentials: 'include',
             // });
-            const response = await fetch(`https://localhost:5000/api/BookStore/AllBooks?pageSize=${pageSize}&pageNumber=${pageNumber}`);
+            const categoryParams = selectedCategories
+                .map((cat) => `bookTypes=${encodeURIComponent(cat)}`)
+                .join('&');
+                
+            const response = await fetch(`https://localhost:5000/api/BookStore/AllBooks?pageSize=${pageSize}&pageNumber=${pageNumber}${selectedCategories.length ? `&${categoryParams}` : ''}`);
             const data = await response.json();
+            setBooks(data.books);
+            setTotalItems(data.totalNumberBooks);
+        
 
             let sortedBooks = data.bookList; //this has to be a lowercase p to match what gets returned
 
@@ -32,7 +43,7 @@ function BookList() {
         };
 
         fetchBook();
-    }, [pageSize, pageNumber, sortOrder]); //try, if don't work pass in default values
+    }, [pageSize, pageNumber, sortOrder, selectedCategories]); //try, if don't work pass in default values
 
 
 
@@ -61,6 +72,8 @@ function BookList() {
                                 <li><strong>Page Count:</strong> {i.pageCount} pages</li>
                                 <li><strong>Price:</strong> ${i.price}</li>
                             </ul>
+
+                            <button className="btn btn-success" onClick={() => navigate(`/donate/${i.title}/${i.bookID}`)}>Checkout</button>
                         </div>
        
                     </div>
