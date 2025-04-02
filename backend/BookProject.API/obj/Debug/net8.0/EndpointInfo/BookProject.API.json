@@ -26,6 +26,16 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "bookTypes",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {

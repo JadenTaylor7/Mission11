@@ -15,14 +15,28 @@ namespace BookProject.API.Controllers
         }
 
         [HttpGet("AllBooks")]
-        public IActionResult GetBooks(int pageSize, int pageNumber)
+        public IActionResult GetBooks(int pageSize, int pageNumber, [FromQuery] List<string>? bookTypes = null)
         {
+            var query = _storeContext.Books.AsQueryable();
 
-            var bookList = _storeContext.Books
+            if (bookTypes != null && bookTypes.Any()) 
+            {
+                query = query.Where(b => bookTypes.Contains(b.Category));
+            }
+
+            var totalNumberBooks = query.Count();
+
+
+
+            var bookList = query
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize).ToList();
 
-            var totalNumberBooks = _storeContext.Books.Count();
+            // var passedObject = new
+            // {
+            //     Books = bookList,
+            //     TotalNumBooks = totalNumberBooks
+            // };
 
             return Ok(new
             {
@@ -30,6 +44,23 @@ namespace BookProject.API.Controllers
                 totalNumberBooks
             });
         }
+
+        // [HttpGet("AllBooks")]
+        // public IActionResult GetBooks(int pageSize, int pageNumber)
+        // {
+
+        //     var bookList = _storeContext.Books
+        //         .Skip((pageNumber - 1) * pageSize)
+        //         .Take(pageSize).ToList();
+
+        //     var totalNumberBooks = _storeContext.Books.Count();
+
+        //     return Ok(new
+        //     {
+        //         bookList,
+        //         totalNumberBooks
+        //     });
+        // }
 
 
 
