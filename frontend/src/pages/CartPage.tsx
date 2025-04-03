@@ -37,7 +37,7 @@ function CartPage() {
         <div className="mt-4">
           <h3>Total: ${getTotalPrice()}</h3>
           <button className="btn btn-primary">Checkout</button>
-          <button className="btn btn-secondary ml-2" onClick={() => navigate('/books')}>Continue Browsing</button>
+          <button className="btn btn-secondary ml-2" onClick={() => navigate('/books')}>Continue Shopping</button>
         </div>
       )}
     </div>
