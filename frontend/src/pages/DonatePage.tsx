@@ -6,15 +6,15 @@ import { CartItem } from '../types/CartItem';
 
 function DonatePage() {
   const navigate = useNavigate();
-  const { title, bookId } = useParams();
+  const { title, bookId, price} = useParams();
   const { addToCart } = useCart();
-  const [donationAmount, setDonationAmount] = useState<number>(0);
+  // const [price, setPrice] = useState<number>(0);
 
   const handleAddToCart = () => {
     const newItem: CartItem = {
       bookId: Number(bookId),
       title: title || 'No Book Found',
-      donationAmount,
+      price: Number(price),
     };
     addToCart(newItem);
     navigate('/cart');
@@ -23,15 +23,16 @@ function DonatePage() {
   return (
     <>
       <WelcomeBand />
-      <h2>Donate to {title}</h2>
+      <h2>Purchase {title}</h2>
 
       <div>
-        <input
+        {/* <input
           type="number"
           placeholder="Enter purchase amount"
-          value={donationAmount}
-          onChange={(x) => setDonationAmount(Number(x.target.value))}
-        />
+          value={price}
+          onChange={(x) => setPrice(Number(x.target.value))}
+        /> */}
+        <label>${price}</label>
         <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
 

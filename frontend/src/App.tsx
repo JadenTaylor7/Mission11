@@ -2,7 +2,7 @@ import './App.css';
 import { CartProvider } from './context/CartContext';
 import CartPage from './pages/CartPage';
 import DonatePage from './pages/DonatePage';
-import ProjectsPage from './pages/BooksPage';
+import BooksPage from './pages/BooksPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -11,10 +11,10 @@ function App() {
       <CartProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<ProjectsPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/" element={<BooksPage />} />
+            <Route path="/books" element={<BooksPage />} />
             <Route
-              path="/donate/:projectName/:projectId"
+              path="/donate/:title/:bookId"
               element={<DonatePage />}
             />
             <Route path="/cart" element={<CartPage />} />
