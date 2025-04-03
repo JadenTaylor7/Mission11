@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './CategoryFilter.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
 
 function CategoryFilter({
   selectedCategories,
@@ -35,19 +35,19 @@ function CategoryFilter({
   }
 
   return (
-    <div className="category-filter">
+    <div className="container mt-3">
       <h5>Book Types</h5>
-      <div className="category-list">
+      <div className="row">
         {categories.map((c) => (
-          <div key={c} className="category-item">
+          <div key={c} className="col-12 d-flex align-items-center mb-2">
             <input
               type="checkbox"
               id={c}
               value={c}
-              className="category-checkbox"
+              className="mr-2"
               onChange={handleCheckboxChange}
             />
-            <label htmlFor={c}>{c}</label>
+            <label htmlFor={c} className="mb-0">{c}</label>
           </div>
         ))}
       </div>

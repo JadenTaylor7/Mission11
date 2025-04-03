@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import WelcomeBand from '../components/WelcomeBand';
 import { useCart } from '../context/CartContext';
-import { useState } from 'react';
 import { CartItem } from '../types/CartItem';
 
 function DonatePage() {
@@ -26,13 +25,7 @@ function DonatePage() {
       <h2>Purchase {title}</h2>
 
       <div>
-        {/* <input
-          type="number"
-          placeholder="Enter purchase amount"
-          value={price}
-          onChange={(x) => setPrice(Number(x.target.value))}
-        /> */}
-        <label>${price}</label>
+        <label>{title}: ${price}</label>
         <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
 

@@ -14,7 +14,7 @@ function App() {
             <Route path="/" element={<BooksPage />} />
             <Route path="/books" element={<BooksPage />} />
             <Route
-              path="/donate/:title/:bookId"
+              path="/donate/:bookId/:title/:price"
               element={<DonatePage />}
             />
             <Route path="/cart" element={<CartPage />} />
@@ -26,17 +26,3 @@ function App() {
 }
 
 export default App;
-
-// import './App.css'
-// import BookList from './BookList'
-
-// function App() {
-
-//   return (
-//     <>
-//       <BookList/>
-//     </>
-//   )
-// }
-
-// export default App
