@@ -31,15 +31,15 @@ const AdminBooksPage = () => {
     loadBooks();
   }, [pageSize, pageNumber]);
 
-  const handleDelete = async (projectId: number) => {
+  const handleDelete = async (bookID: number) => {
     const confirmDelete = window.confirm(
       'Are you sure you want to delete this project?'
     );
     if (!confirmDelete) return;
 
     try {
-      await deleteBook(projectId);
-      setBooks(books.filter((p) => p.bookID !== bookID));
+      await deleteBook(bookID);
+      setBooks(books.filter((b) => b.bookID !== bookID));
     } catch (error) {
       alert('Failed to delete project. Please try again.');
     }
@@ -90,35 +90,39 @@ const AdminBooksPage = () => {
         <thead className="table-dark">
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Regional Program</th>
-            <th>Impact</th>
-            <th>Phase</th>
-            <th>Status</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+            <th>Classification</th>
+            <th>Category</th>
+            <th>Page Count</th>
+            <th>Price</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {books.map((p) => (
-            <tr key={p.projectId}>
-              <td>{p.projectId}</td>
-              <td>{p.projectName}</td>
-              <td>{p.projectType}</td>
-              <td>{p.projectRegionalProgram}</td>
-              <td>{p.projectImpact}</td>
-              <td>{p.projectPhase}</td>
-              <td>{p.projectFunctionalityStatus}</td>
-              <td>asd;lkfj;lj
+          {books.map((b) => (
+            <tr key={b.bookID}>
+              <td>{b.bookID}</td>
+              <td>{b.title}</td>
+              <td>{b.author}</td>
+              <td>{b.publisher}</td>
+              <td>{b.isbn}</td>
+              <td>{b.classification}</td>
+              <td>{b.category}</td>
+              <td>{b.pageCount}</td>
+              <td>{b.price}</td>
+              <td>
                 <button
                   className="btn btn-primary btn-sm w-100 mb-1"
-                  onClick={() => setEditingBook(p)}
+                  onClick={() => setEditingBook(b)}
                 >
                   Edit
                 </button>
                 <button
                   className="btn btn-danger btn-sm w-100"
-                  onClick={() => handleDelete(p.projectId)}
+                  onClick={() => handleDelete(b.bookID)}
                 >
                   Delete
                 </button>
