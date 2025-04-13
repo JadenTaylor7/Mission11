@@ -19,7 +19,8 @@ const AdminBooksPage = () => {
     const loadBooks = async () => {
       try {
         const data = await fetchBooks(pageSize, pageNumber, []);
-        setBooks(data.books);
+        console.log("Fetched book data:", data); // Add this!
+        setBooks(data.bookList);
         setTotalPages(Math.ceil(data.totalNumberBooks / pageSize));
       } catch (err) {
         setError((err as Error).message);
@@ -66,7 +67,7 @@ const AdminBooksPage = () => {
           onSuccess={() => {
             setShowForm(false);
             fetchBooks(pageSize, pageNumber, []).then((data) =>
-              setBooks(data.books)
+              setBooks(data.bookList)
             );
           }}
           onCancel={() => setShowForm(false)}
@@ -79,7 +80,7 @@ const AdminBooksPage = () => {
           onSuccess={() => {
             setEditingBook(null);
             fetchBooks(pageSize, pageNumber, []).then((data) =>
-              setBooks(data.books)
+              setBooks(data.bookList)
             );
           }}
           onCancel={() => setEditingBook(null)}
@@ -98,7 +99,7 @@ const AdminBooksPage = () => {
             <th>Category</th>
             <th>Page Count</th>
             <th>Price</th>
-            <th></th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

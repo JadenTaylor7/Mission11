@@ -1,11 +1,11 @@
 import { book } from '../types/book';
 
 interface FetchBooksResponse {
-  books: book[];
+  bookList: book[];
   totalNumberBooks: number;
 }
 
-const API_URL = 'https://waterproject-hilton-backend.azurewebsites.net/Water';
+const API_URL = 'https://localhost:5000/api/BookStore';
 
 export const fetchBooks = async (
   pageSize: number,
@@ -14,20 +14,20 @@ export const fetchBooks = async (
 ): Promise<FetchBooksResponse> => {
   try {
     const categoryParams = selectedCategories
-      .map((cat) => `projectTypes=${encodeURIComponent(cat)}`)
+      .map((cat) => `bookTypes=${encodeURIComponent(cat)}`)
       .join('&');
 
     const response = await fetch(
-      `${API_URL}/AllProjects?pageSize=${pageSize}&pageNumber=${pageNumber}${selectedCategories.length ? `&${categoryParams}` : ''}`
+      `${API_URL}/AllBooks?pageSize=${pageSize}&pageNumber=${pageNumber}${selectedCategories.length ? `&${categoryParams}` : ''}`
     );
 
     if (!response.ok) {
-      throw new Error('Failed to fetch projects');
+      throw new Error('Failed to fetch books');
     }
 
     return await response.json();
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    console.error('Error fetching books:', error);
     throw error;
   }
 };
@@ -43,7 +43,7 @@ export const addBook = async (newBook: book): Promise<book> => {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to add project');
+      throw new Error('Failed to add book');
     }
 
     return await response.json();
