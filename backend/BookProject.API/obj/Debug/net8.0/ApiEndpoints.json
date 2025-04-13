@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "BookProject.API.Controllers.BookStoreController",
+    "Method": "AddBook",
+    "RelativePath": "api/BookStore/AddBook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newBook",
+        "Type": "BookProject.API.Data.BookStore",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookProject.API.Controllers.BookStoreController",
     "Method": "GetBooks",
     "RelativePath": "api/BookStore/AllBooks",
     "HttpMethod": "GET",
@@ -21,6 +37,22 @@
         "Name": "bookTypes",
         "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookProject.API.Controllers.BookStoreController",
+    "Method": "DeleteBook",
+    "RelativePath": "api/BookStore/DeleteBook/{bookID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookID",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -54,6 +86,27 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "BookProject.API.Controllers.BookStoreController",
+    "Method": "UpdateBook",
+    "RelativePath": "api/BookStore/UpdateBook/{bookID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedBook",
+        "Type": "BookProject.API.Data.BookStore",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "BookProject.API.Controllers.WeatherForecastController",

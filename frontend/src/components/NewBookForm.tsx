@@ -7,7 +7,7 @@ interface NewBookFormProps {
   onCancel: () => void;
 }
 
-const NewProjectForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
+const NewBookForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
   const [formData, setFormData] = useState<book>({
     bookID: 0,
     title: '',
@@ -113,4 +113,4 @@ const NewProjectForm = ({ onSuccess, onCancel }: NewBookFormProps) => {
   );
 };
 
-export default NewProjectForm;
+export default NewBookForm;

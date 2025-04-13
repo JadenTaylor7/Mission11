@@ -27,7 +27,7 @@ const EditBookForm = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add New Project</h2>
+      <h2>Update Book</h2>
       <label>
         Book Title:
         <input
